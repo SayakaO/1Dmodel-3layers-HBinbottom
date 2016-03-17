@@ -134,12 +134,12 @@ c
 c
 c	-- advection term in the z direction --
 c
-	 if(k.eq.1) then
-	  advez=ww*eco(k)
-	 else
-        advez=ww*(eco(k)-eco(k-1))/ddz(k)
-	 endif
-         write (*,*)  advez
+c	 if(k.eq.1) then
+c	  advez=ww*eco(k)
+c	 else
+c        advez=ww*(eco(k)-eco(k-1))/ddz(k)
+c	 endif
+c         write (*,*)  advez
 c
 c	-- diffusion term --
 c
@@ -168,6 +168,7 @@ c
 c       difez=(fl-fu)/ddz(k)
 c
 c       econ(k)=eco(k)+tbal*dt*(-advez+difez+qeco(k))
+        econ(k)=eco(k)+qeco(k)
 c
    10 continue
 c

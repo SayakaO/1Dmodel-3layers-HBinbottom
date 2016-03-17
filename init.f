@@ -54,8 +54,8 @@ c
        disn(k)=0.d0
        dox(k)=dox0
        doxn(k)=0.d0
-       hb(k)=0
-       hbn(k)=0
+       hb(k)=hb0
+       hbn(k)=0.d0
    60 continue
 c
       wx=wx0
