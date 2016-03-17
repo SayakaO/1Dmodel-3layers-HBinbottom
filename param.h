@@ -78,7 +78,7 @@ c
       common /outrf/trf(500),prd(500)
       common /outnav/ntav(500),npav(500)
       common /outav/tav(500),pav(500)
-      common /hb/hb(0:nzmax+1),hbn(0:nzmax+1),qhb(0:nzmax)
+      common /hb/hb(0:nzmax+1),hbn(0:nzmax+1),qhb(nzmax)
       common /poly/poly(0:nzmax+1),polyn(0:nzmax+1),qpoly(nzmax)
       common /bother/bother(0:nzmax+1),bothern(0:nzmax+1),qbother(nzmax)
       common /spfish/spfish(0:nzmax+1),spfishn(0:nzmax+1),qspfish(nzmax)

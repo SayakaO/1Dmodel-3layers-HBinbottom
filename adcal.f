@@ -127,11 +127,52 @@ c-----------------------------------------------------------------------
 
       dimension eco(0:nzmax+1)
       dimension econ(0:nzmax+1)
-      dimension deco(0:nzmax)
+      dimension qeco(nzmax)
       dimension fkhq(0:nzmax)
 c
-c      do 10 k=nz,1,-1
+      do 10 k=nz,1,-1
 c
+c	-- advection term in the z direction --
+c
+	 if(k.eq.1) then
+	  advez=ww*eco(k)
+	 else
+        advez=ww*(eco(k)-eco(k-1))/ddz(k)
+	 endif
+         write (*,*)  advez
+c
+c	-- diffusion term --
+c
+c       ep=eco(k)
+c       eu=eco(k-1)
+c       el=eco(k+1)
+c
+c	 if(k.eq.1) eu=ep
+c	 if(k.eq.nz) el=ep
+c
+c	 fkhqu=fkhq(k-1)
+c	 fkhql=fkhq(k)
+c
+c       if(k.eq.1) then
+c        fu=0.d0
+c       else
+c        fu=fkhqu*(ep-eu)/dzh(k-1)
+c       endif
+c
+c	 if(k.eq.nz) then
+c	  fl=0.d0
+c	 else
+c        fl=fkhql*(el-ep)/dzh(k)
+c	 endif
+c
+c       difez=(fl-fu)/ddz(k)
+c
+c       econ(k)=eco(k)+tbal*dt*(-advez+difez+qeco(k))
+c
+   10 continue
+c
+      return
+      end
 c     if(k.eq.nz) then
 c
 c      econ(k)=eco(k)+tbal*dt*deco(k)
