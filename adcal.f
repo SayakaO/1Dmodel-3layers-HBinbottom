@@ -121,17 +121,22 @@ c     -- dynamics for HTL --
 c                                               Author: Ayaka SAKAMOTO
 c                                               Update: 2016.2.18
 c-----------------------------------------------------------------------
-      subroutine adcalb(ww,eco,econ,qeco,fkhq)
-      implicit double precision (a-h,o-z)
-      include 'param.h'
+c      subroutine adcalb(ww,eco,econ,qeco,fkhq)
+c      implicit double precision (a-h,o-z)
+c      include 'param.h'
 c
-      dimension eco(0:nzmax+1)
-      dimension econ(0:nzmax+1)
-      dimension qeco(nzmax)
-      dimension fkhq(0:nzmax)
+c      dimension eco(0:nzmax+1)
+c      dimension econ(0:nzmax+1)
+c      dimension deco(0:nzmax)
+c      dimension fkhq(0:nzmax)
 c
-      if(k.eq.nz) then
-      econ(k)=eco(k)+tbal*dt*qeco(k)
-      end if 
-      return
-      end
+c      do 10 k=nz,1,-1
+c
+c     if(k.eq.nz) then
+c
+c      econ(k)=eco(k)+tbal*dt*deco(k)
+c     end if 
+c      10 continue
+c      
+c      return
+c      end

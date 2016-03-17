@@ -58,7 +58,7 @@ c       call adcal(ww,bac,bacn,qbac,fkh)
        call adcal(ww,dinh,dinhn,qdinh,fkh)
 c      call adcal(ww,dis,disn,qdis,fkh)
        call adcal(ww,dox,doxn,qdox,fkh)
-       call adcalb(ww,hb,hbn,qhb,fkh)
+       call adcal(ww,hb,hbn,qhb,fkh)
 c
 	endif
 c
@@ -624,8 +624,10 @@ c
        qdip(k)=-b1psum+b2psum+b7psum+dppomd*b10+dpdomd*b13+qdp
        qdinh(k)=-b1nsum+b2nsum+b7nsum+dnpomd*b10+dndomd*b13+qdnh
        qdox(k)=d1sum-d2sum-d3sum-topom*b10-todom*b13+b17+qdo
-       qhb(k)=b18-b20
-          write (*,*) qhb(k)
+c
+        qhb(k)=b18-b20
+c       hbn(k)=hb(k)+tbal*dt*dhb(k)
+         write (*,*)  qhb(k)
 c       qpoly(k)=(b31-b32-spfvspoly-pfishvspoly)*dt+qpoly(k-1)
 c       qbother(k)=(b41-b42-sdfvsother-pfishvsother)*dt+qbother(k-1)
 c       qspfish(k)=(b51-b52-pfishvsspf)*dt+qspfish(k-1)
@@ -722,6 +724,10 @@ c
         doxm=(dox(k)*dzl+dox(k-1)*dzu)/(dzu+dzl)
         dox(k)=doxm
         dox(k-1)=doxm
+c
+        hbm=(hb(k)*dzl+hb(k-1)*dzu)/(dzu+dzl)
+        hb(k)=hbm
+        hb(k-1)=hbm
 c
        endif
 c
