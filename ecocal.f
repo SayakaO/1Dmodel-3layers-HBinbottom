@@ -627,7 +627,7 @@ c
 c
        qhb(k)=b18-b20
 c       hbn(k)=hb(k)+tbal*dt*dhb(k)
-         write (*,*)  qhb(k)
+         write (*,*)  hb(k)
 c       qpoly(k)=(b31-b32-spfvspoly-pfishvspoly)*dt+qpoly(k-1)
 c       qbother(k)=(b41-b42-sdfvsother-pfishvsother)*dt+qbother(k-1)
 c       qspfish(k)=(b51-b52-pfishvsspf)*dt+qspfish(k-1)
