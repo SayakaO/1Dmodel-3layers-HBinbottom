@@ -168,7 +168,7 @@ c
 c       difez=(fl-fu)/ddz(k)
 c
 c       econ(k)=eco(k)+tbal*dt*(-advez+difez+qeco(k))
-        econ(k)=eco(k)+tbal*dt*qeco(k)
+        econ(k)=eco(k)
 c
    10 continue
 c
