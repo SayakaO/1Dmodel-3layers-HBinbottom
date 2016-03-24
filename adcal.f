@@ -124,7 +124,7 @@ c-----------------------------------------------------------------------
       subroutine adcalb(ww,eco,econ,qeco,fkhq)
       implicit double precision (a-h,o-z)
       include 'param.h'
-
+c
       dimension eco(0:nzmax+1)
       dimension econ(0:nzmax+1)
       dimension qeco(nzmax)
@@ -174,11 +174,3 @@ c
 c
       return
       end
-c     if(k.eq.nz) then
-c
-c      econ(k)=eco(k)+tbal*dt*deco(k)
-c     end if 
-c     10 continue
-c      
-c      return
-c      end

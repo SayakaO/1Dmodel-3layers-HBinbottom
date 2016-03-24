@@ -626,8 +626,7 @@ c
        qdox(k)=d1sum-d2sum-d3sum-topom*b10-todom*b13+b17+qdo
 c
        qhb(k)=b18-b20
-c       hbn(k)=hb(k)+tbal*dt*dhb(k)
-         write (*,*)  hb(k)
+        write (*,*)  b18
 c       qpoly(k)=(b31-b32-spfvspoly-pfishvspoly)*dt+qpoly(k-1)
 c       qbother(k)=(b41-b42-sdfvsother-pfishvsother)*dt+qbother(k-1)
 c       qspfish(k)=(b51-b52-pfishvsspf)*dt+qspfish(k-1)

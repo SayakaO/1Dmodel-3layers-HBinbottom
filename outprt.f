@@ -33,7 +33,7 @@ c
         write(32,100) time,(dinh(k),k=1,nz)
         write(33,100) time,(dox(k),k=1,nz)
         write(34,100) time,(hb(k),k=1,nz)
-        write(35,100) time,(qpoly(k),k=1,nz)
+        write(35,100) time,(qphy(1,k),k=1,nz)
         write(50,100) time,(qbother(k),k=1,nz)
         write(70,100) time,(qspfish(k),k=1,nz)
         write(71,100) time,(qsdfish(k),k=1,nz)
