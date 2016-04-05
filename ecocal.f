@@ -359,15 +359,15 @@ c
 c   -- hervibous benthos -- 
 c feeding = (P/Q)*(search rate*vulnerability*B prey*B predator/2*vul+search rate*B predator)
          pq4hb=0.101
-         hbsr2phy=0.133
-         vulhbandphy=1.0
-      b18=pq4hb*(hbsr2phy*vulhbandphy*physum*hb(k)/2*vulhbandphy
-     &    +hbsr2phy*hb(k))
+         hbsr2phy=4.228d-9
+         vulhb2phy=1.0
+      b18=pq4hb*(hbsr2phy*vulhb2phy*physum*hb(k)/
+     &    (2*vulhb2phy+hbsr2phy*hb(k)))
 c
 c  other mortality = (1-EE)*PB*B
         ee4hb=0.383
-        pb4hb=1.875d-09
-      b20 = (1-ee4hb)* pb4hb * hb(k)
+        pb4hb=4.499d-8
+      b20=(1-ee4hb)*pb4hb*hb(k)
 c
 c   -- polychaeta -- 
 c         
@@ -595,7 +595,8 @@ c
 c
         do 70 m=1,np
          qphy(m,k)=b1(m)-b2(m)-b3(m)-b4(m)
-     &            -b6sum*phy(m,k)/(physum+poc(k))+qph
+     &            -b6sum*phy(m,k)/(physum+poc(k))
+     &            +qph
    70   continue
         do 72 m=1,nzp
          qzoo(m,k)=b6(m)-b7(m)-b8(m)-b9(m)+qzo
