@@ -361,7 +361,7 @@ c feeding = (P/Q)*(search rate*vulnerability*B prey*B predator/2*vul+search rate
          pq4hb=0.101
          hbsr2phy=4.228d-9
          vulhb2phy=1.0
-      b18=pq4hb*(hbsr2phy*vulhb2phy*physum*hb(k)/
+      b18=pq4hb*(hbsr2phy*vulhb2phy*phy(1,k)*hb(k)/
      &    (2*vulhb2phy+hbsr2phy*hb(k)))
 c
 c  other mortality = (1-EE)*PB*B
@@ -374,9 +374,9 @@ c
 c  feeding = (P/Q)*(search rate*vulnerability*B prey*B predator/2*vul+search rate*B predator)
 c         pq4poly=0.205
 c         polysr2det=0.0222
-c         vulpolyanddet=1.03
-c      b31=pq4poly*(polysr2det*vulpolyanddet*poc(k)*poly(k)/2
-c      & *vulpolyanddet+polysr2det*poly(k))
+c         vulpoly2det=1.03
+c      b31=pq4poly*(polysr2det*vulpoly2det*poc(k)*poly(k)/
+c      &   (2*vulpoly2det+polysr2det*poly(k)))
 c
 c  other mortality = (1-EE)*PB*B
 c        ee4poly=0.010
@@ -596,7 +596,7 @@ c
         do 70 m=1,np
          qphy(m,k)=b1(m)-b2(m)-b3(m)-b4(m)
      &            -b6sum*phy(m,k)/(physum+poc(k))
-     &            +qph
+     &            -b18+qph
    70   continue
         do 72 m=1,nzp
          qzoo(m,k)=b6(m)-b7(m)-b8(m)-b9(m)+qzo
