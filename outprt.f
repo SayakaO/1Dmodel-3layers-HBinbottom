@@ -33,10 +33,10 @@ c
         write(32,100) time,(dinh(k),k=1,nz)
         write(33,100) time,(dox(k),k=1,nz)
         write(34,100) time,(hb(k),k=1,nz)
-        write(35,100) time,(qhb(k),k=1,nz)
-        write(50,100) time,(b18,k=1,nz)
-        write(70,100) time,(b20,k=1,nz)
-        write(71,100) time,(qsdfish(k),k=1,nz)
+        write(35,100) time,(poly(k),k=1,nz)
+        write(50,100) time,(b31,k=1,nz)
+        write(70,100) time,(b32,k=1,nz)
+        write(71,100) time,(qpoly(k),k=1,nz)
         write(72,100) time,(qpfish(k),k=1,nz)
        endif
       endif

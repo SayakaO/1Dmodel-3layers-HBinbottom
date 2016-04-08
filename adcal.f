@@ -117,7 +117,7 @@ c
       end
 c
 c-----------------------------------------------------------------------
-c     -- dynamics for HTL --
+c     -- dynamics for benthos--
 c                                               Author: Ayaka SAKAMOTO
 c                                               Update: 2016.2.18
 c-----------------------------------------------------------------------
@@ -169,6 +169,7 @@ c       difez=(fl-fu)/ddz(k)
 c
 c       econ(k)=eco(k)+tbal*dt*(-advez+difez+qeco(k))
         econ(k)=eco(k)+tbal*dt*qeco(k)
+c        econ(k)=eco(k)
 c
    10 continue
 c

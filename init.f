@@ -56,6 +56,8 @@ c
        doxn(k)=0.d0
        hb(k)=hb0
        hbn(k)=0.d0
+       poly(k)=poly0
+       polyn(k)=0.d0
    60 continue
 c
       wx=wx0

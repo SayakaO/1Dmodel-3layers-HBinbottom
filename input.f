@@ -140,7 +140,7 @@ c
       dis0=300.d0
       dox0=10.d0
       hb0=20.d0
-c      poly(1)=1.d0
+      poly0=20.d0
 c      bother(1)=10000.d0
 c      spfish(1)=10000.d0
 c      sdfish(1)=10000.d0

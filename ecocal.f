@@ -59,6 +59,7 @@ c       call adcal(ww,bac,bacn,qbac,fkh)
 c      call adcal(ww,dis,disn,qdis,fkh)
        call adcal(ww,dox,doxn,qdox,fkh)
        call adcalb(ww,hb,hbn,qhb,fkh)
+c       call adcalb(ww,poly,polyn,qpoly,fkh)
 c
 	endif
 c
@@ -92,6 +93,7 @@ c	  bac(k)=bacn(k)
 c        dis(k)=disn(k)
         dox(k)=doxn(k)
         hb(k)=hbn(k)
+c        poly(k)=polyn(k)
 c        if(bac(k).le.1.d-8) bac(i,j,k)=1.d-8
         if(poc(k).le.1.d-8) poc(k)=1.d-8
         if(doc(k).le.1.d-8) doc(k)=1.d-8
@@ -100,6 +102,7 @@ c        if(bac(k).le.1.d-8) bac(i,j,k)=1.d-8
 c        if(dis(k).le.1.d-8) dis(k)=1.d-8
         if(dox(k).le.1.d-8) dox(k)=1.d-8
         if(hb(k).le.1.d-8) hb(k)=1.d-8
+c        if(poly(k).le.1.d-8) poly(k)=1.d-8
    32  continue
 c
 	endif
@@ -372,16 +375,16 @@ c
 c   -- polychaeta -- 
 c         
 c  feeding = (P/Q)*(search rate*vulnerability*B prey*B predator/2*vul+search rate*B predator)
-c         pq4poly=0.205
-c         polysr2det=0.0222
-c         vulpoly2det=1.03
-c      b31=pq4poly*(polysr2det*vulpoly2det*poc(k)*poly(k)/
-c      &   (2*vulpoly2det+polysr2det*poly(k)))
+         pq4pol=0.205
+         polsr2det=7.045d-10
+         vulpol2det=1.03
+      b31=pq4pol*polsr2det*vulpol2det*poc(k)*poly(k)/
+     &    (2*vulpol2det+polsr2det*poly(k))
 c
 c  other mortality = (1-EE)*PB*B
-c        ee4poly=0.010
-c        pb4poly=2.708d-09
-c      b32 = (1-ee4poly)* pb4poly * poly(k)
+        ee4poly=0.010
+        pb4poly=2.708d-09
+      b32 = (1-ee4poly)* pb4poly * poly(k)
 c
 c   -- other benthos -- 
 c  feeding = (P/Q)*(search rate*vulnerability*B prey*B predator/2*vul+search rate*B predator)
@@ -596,7 +599,7 @@ c
         do 70 m=1,np
          qphy(m,k)=b1(m)-b2(m)-b3(m)-b4(m)
      &            -b6sum*phy(m,k)/(physum+poc(k))
-     &            -b18+qph
+     &            +qph
    70   continue
         do 72 m=1,nzp
          qzoo(m,k)=b6(m)-b7(m)-b8(m)-b9(m)+qzo
@@ -627,8 +630,8 @@ c
        qdox(k)=d1sum-d2sum-d3sum-topom*b10-todom*b13+b17+qdo
 c
        qhb(k)=b18-b20
-        write (*,*)  b18
-c       qpoly(k)=(b31-b32-spfvspoly-pfishvspoly)*dt+qpoly(k-1)
+c       qpoly(k)=b31-b32
+       write (*,*)  qdox(k)
 c       qbother(k)=(b41-b42-sdfvsother-pfishvsother)*dt+qbother(k-1)
 c       qspfish(k)=(b51-b52-pfishvsspf)*dt+qspfish(k-1)
 c       qsdfish(k)=(b61-b62-pfishvssdf)*dt+qsdfish(k-1)
@@ -646,7 +649,7 @@ c
 c
          qdip(k)=qdip(k)+.0d0*(dipph(1)*wphsum+dppomd*wpcsum)/ddz(k)
          qdinh(k)=qdinh(k)+.4d0*(dinph(1)*wphsum+dnpomd*wpcsum)/ddz(k)
-	 qdox(k)=qdox(k)-topom*(wphsum+wpcsum)/ddz(k)
+	     qdox(k)=qdox(k)-topom*(wphsum+wpcsum)/ddz(k)
 c
         endif
 c
@@ -725,9 +728,13 @@ c
         dox(k)=doxm
         dox(k-1)=doxm
 c
-        hbm=(hb(k)*dzl+hb(k-1)*dzu)/(dzu+dzl)
-        hb(k)=hbm
-        hb(k-1)=hbm
+c        hbm=(hb(k)*dzl+hb(k-1)*dzu)/(dzu+dzl)
+c        hb(k)=hbm
+c        hb(k-1)=hbm
+c        
+c        polym=(poly(k)*dzl+poly(k-1)*dzu)/(dzu+dzl)
+c        poly(k)=polym
+c        poly(k-1)=polym
 c
        endif
 c
