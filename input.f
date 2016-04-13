@@ -133,7 +133,7 @@ c
       phy0(1)=20.d0
       zoo0(1)=2.d0
 	  bac0=1000.d0
-      poc0=50.d0
+      poc0=100.d0
       doc0=1000.d0
       dip0=50.d0
       dinh0=400.d0

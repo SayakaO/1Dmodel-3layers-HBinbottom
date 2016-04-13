@@ -59,7 +59,7 @@ c       call adcal(ww,bac,bacn,qbac,fkh)
 c      call adcal(ww,dis,disn,qdis,fkh)
        call adcal(ww,dox,doxn,qdox,fkh)
        call adcalb(ww,hb,hbn,qhb,fkh)
-c       call adcalb(ww,poly,polyn,qpoly,fkh)
+       call adcalb(ww,poly,polyn,qpoly,fkh)
 c
 	endif
 c
@@ -93,7 +93,8 @@ c	  bac(k)=bacn(k)
 c        dis(k)=disn(k)
         dox(k)=doxn(k)
         hb(k)=hbn(k)
-c        poly(k)=polyn(k)
+        poly(k)=polyn(k)
+c   
 c        if(bac(k).le.1.d-8) bac(i,j,k)=1.d-8
         if(poc(k).le.1.d-8) poc(k)=1.d-8
         if(doc(k).le.1.d-8) doc(k)=1.d-8
@@ -102,7 +103,7 @@ c        if(bac(k).le.1.d-8) bac(i,j,k)=1.d-8
 c        if(dis(k).le.1.d-8) dis(k)=1.d-8
         if(dox(k).le.1.d-8) dox(k)=1.d-8
         if(hb(k).le.1.d-8) hb(k)=1.d-8
-c        if(poly(k).le.1.d-8) poly(k)=1.d-8
+        if(poly(k).le.1.d-8) poly(k)=1.d-8
    32  continue
 c
 	endif
@@ -343,6 +344,8 @@ c
 c     -- particulate organic carbon --
 c
         b10=rpoc*thepoc**(tmp(k)-20.d0)*poc(k)
+         c11=rpoc*thepoc
+         c12=(tmp(k)-20.d0)*poc(k)
         b11=ft*b13
 c
 c     -- dissolved organic carbon --
@@ -579,6 +582,7 @@ c
          b2ssum=b2ssum+disph(m)*b2(m)
          b3sum=b3sum+b3(m)
          b4sum=b4sum+b4(m)
+         write (*,*)  b4sum
    60   continue
         do 62 m=1,nzp
          b6sum=b6sum+b6(m) 
@@ -598,14 +602,15 @@ c
 c
         do 70 m=1,np
          qphy(m,k)=b1(m)-b2(m)-b3(m)-b4(m)
-     &            -b6sum*phy(m,k)/(physum+poc(k))
-     &            +qph
+     &            -b6sum*phy(m,k)/(physum+poc(k))+qph
+     &            -b18
    70   continue
         do 72 m=1,nzp
          qzoo(m,k)=b6(m)-b7(m)-b8(m)-b9(m)+qzo
    72   continue
         qpoc(k)=b4sum-b6sum*poc(k)/(physum+poc(k))
      &         +b8sum+b9sum-b10-b11+qpc
+     &         -b31
         qdoc(k)=b3sum+b11-b13+qdc
 c
         dipzod=(dipph(1)*(b7(1)+b8(1)+b9(1))-dipzo(1)*b9(1))
@@ -630,8 +635,7 @@ c
        qdox(k)=d1sum-d2sum-d3sum-topom*b10-todom*b13+b17+qdo
 c
        qhb(k)=b18-b20
-c       qpoly(k)=b31-b32
-       write (*,*)  qdox(k)
+       qpoly(k)=b31-b32
 c       qbother(k)=(b41-b42-sdfvsother-pfishvsother)*dt+qbother(k-1)
 c       qspfish(k)=(b51-b52-pfishvsspf)*dt+qspfish(k-1)
 c       qsdfish(k)=(b61-b62-pfishvssdf)*dt+qsdfish(k-1)
@@ -728,6 +732,7 @@ c
         dox(k)=doxm
         dox(k-1)=doxm
 c
+c        以下cut(20160408)
 c        hbm=(hb(k)*dzl+hb(k-1)*dzu)/(dzu+dzl)
 c        hb(k)=hbm
 c        hb(k-1)=hbm
@@ -735,7 +740,7 @@ c
 c        polym=(poly(k)*dzl+poly(k-1)*dzu)/(dzu+dzl)
 c        poly(k)=polym
 c        poly(k-1)=polym
-c
+c        ここまで
        endif
 c
    10 continue
