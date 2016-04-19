@@ -132,42 +132,6 @@ c
 c
       do 10 k=nz,1,-1
 c
-c	-- advection term in the z direction --
-c
-c	 if(k.eq.1) then
-c	  advez=ww*eco(k)
-c	 else
-c        advez=ww*(eco(k)-eco(k-1))/ddz(k)
-c	 endif
-c         write (*,*)  advez
-c
-c	-- diffusion term --
-c
-c       ep=eco(k)
-c       eu=eco(k-1)
-c       el=eco(k+1)
-c
-c	 if(k.eq.1) eu=ep
-c	 if(k.eq.nz) el=ep
-c
-c	 fkhqu=fkhq(k-1)
-c	 fkhql=fkhq(k)
-c
-c       if(k.eq.1) then
-c        fu=0.d0
-c       else
-c        fu=fkhqu*(ep-eu)/dzh(k-1)
-c       endif
-c
-c	 if(k.eq.nz) then
-c	  fl=0.d0
-c	 else
-c        fl=fkhql*(el-ep)/dzh(k)
-c	 endif
-c
-c       difez=(fl-fu)/ddz(k)
-c
-c       econ(k)=eco(k)+tbal*dt*(-advez+difez+qeco(k))
         econ(k)=eco(k)+tbal*dt*qeco(k)
 c        econ(k)=eco(k)
 c

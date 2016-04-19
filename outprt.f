@@ -34,7 +34,7 @@ c
         write(33,100) time,(dox(k),k=1,nz)
         write(34,100) time,(hb(k),k=1,nz)
         write(35,100) time,(poly(k),k=1,nz)
-        write(50,100) time,(b4sum,k=1,nz)
+        write(50,100) time,(other(k),k=1,nz)
         write(70,100) time,(b13,k=1,nz)
         write(71,100) time,(c11,k=1,nz)
         write(72,100) time,(c12,k=1,nz)

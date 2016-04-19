@@ -70,7 +70,7 @@ c
      &          status='unknown')
         open(35,file='output/tpoly.dat',form='formatted',
      &          status='unknown')
-        open(50,file='output/tbother.dat',form='formatted',
+        open(50,file='output/tother.dat',form='formatted',
      &          status='unknown')
         open(70,file='output/tspfish.dat',form='formatted',
      &          status='unknown')  

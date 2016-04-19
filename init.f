@@ -58,6 +58,8 @@ c
        hbn(k)=0.d0
        poly(k)=poly0
        polyn(k)=0.d0
+       other(k)=other0
+       othern(k)=0.d0
    60 continue
 c
       wx=wx0

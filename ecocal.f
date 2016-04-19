@@ -60,6 +60,7 @@ c      call adcal(ww,dis,disn,qdis,fkh)
        call adcal(ww,dox,doxn,qdox,fkh)
        call adcalb(ww,hb,hbn,qhb,fkh)
        call adcalb(ww,poly,polyn,qpoly,fkh)
+       call adcalb(ww,other,othern,qother,fkh)
 c
 	endif
 c
@@ -94,6 +95,7 @@ c        dis(k)=disn(k)
         dox(k)=doxn(k)
         hb(k)=hbn(k)
         poly(k)=polyn(k)
+        other(k)=othern(k)
 c   
 c        if(bac(k).le.1.d-8) bac(i,j,k)=1.d-8
         if(poc(k).le.1.d-8) poc(k)=1.d-8
@@ -104,6 +106,7 @@ c        if(dis(k).le.1.d-8) dis(k)=1.d-8
         if(dox(k).le.1.d-8) dox(k)=1.d-8
         if(hb(k).le.1.d-8) hb(k)=1.d-8
         if(poly(k).le.1.d-8) poly(k)=1.d-8
+        if(other(k).le.1.d-8) other(k)=1.d-8
    32  continue
 c
 	endif
@@ -392,26 +395,26 @@ c
 c   -- other benthos -- 
 c  feeding = (P/Q)*(search rate*vulnerability*B prey*B predator/2*vul+search rate*B predator)
 c      other benthos VS detritus         
-c          pq4bother=0.185
-c          othersr2det=0.0089
-c          vulotheranddet=1.76
-c        bofd1=pq4bother*othersr2det*vulotheranddet*poc(k)*bother(k)
-c        bofd2=2*vulotheranddet+othersr2det*bother(k)
-c    エラー箇所↓-----------------------------------------------------------------------------*解決？
-c       obvsdet=bofd1/bofd2
+          pq4oth=0.185
+          othsr2det=2.818d-10
+          vuloth2det=1.76
+        bofd1=pq4oth*othsr2det*vuloth2det*poc(k)*other(k)
+        bofd2=2*vuloth2det+othsr2det*other(k)
+        obvsdet=bofd1/bofd2
 c       other benthos VS  zooplankton         
-c          othersr2zoop=0.035
-c          vulotherandzoop=1.9d+12
-c        bofz1=pq4bother*othersr2zoop*vulotherandzoop*zoosum*bother(k)
-c        bofz2=2*vulotherandzoop+othersr2zoop*bother(k)
-c    エラー箇所↓-----------------------------------------------------------------------------*解決？
-c      obvszp=bofz1/bofz2
-c      b41=obvsdet + obvszp
+          othsr2zoop=1.114d-09
+          vuloth2zoop=1.9d+12
+        bofz1=pq4oth*othsr2zoop*vuloth2zoop*zoo(1,k)*other(k)
+        bofz2=2*vuloth2zoop+othsr2zoop*other(k)
+        obvszp=bofz1/bofz2
+        b41=obvsdet + obvszp
+      
 c
 c  other mortality = (1-EE)*PB*B
-c        ee4bother=0.125
-c        pb4bother=1.957d-09
-c      b42=(1-ee4bother)* pb4bother * bother(k)
+        ee4oth=0.125
+        pb4oth=1.957d-09
+       b42=(1-ee4oth)* pb4oth * other(k)
+         write (*,*)  b42
 c
 c   -- small pelagic fish -- 
 c  feeding = (P/Q)*(search rate*vulnerability*B prey*B predator/2*vul+search rate*B predator)
@@ -582,7 +585,6 @@ c
          b2ssum=b2ssum+disph(m)*b2(m)
          b3sum=b3sum+b3(m)
          b4sum=b4sum+b4(m)
-         write (*,*)  b4sum
    60   continue
         do 62 m=1,nzp
          b6sum=b6sum+b6(m) 
@@ -607,10 +609,12 @@ c
    70   continue
         do 72 m=1,nzp
          qzoo(m,k)=b6(m)-b7(m)-b8(m)-b9(m)+qzo
+     &             -obvszp     
    72   continue
         qpoc(k)=b4sum-b6sum*poc(k)/(physum+poc(k))
      &         +b8sum+b9sum-b10-b11+qpc
      &         -b31
+     &         -obvsdet
         qdoc(k)=b3sum+b11-b13+qdc
 c
         dipzod=(dipph(1)*(b7(1)+b8(1)+b9(1))-dipzo(1)*b9(1))
@@ -636,7 +640,7 @@ c
 c
        qhb(k)=b18-b20
        qpoly(k)=b31-b32
-c       qbother(k)=(b41-b42-sdfvsother-pfishvsother)*dt+qbother(k-1)
+       qother(k)=b41-b42
 c       qspfish(k)=(b51-b52-pfishvsspf)*dt+qspfish(k-1)
 c       qsdfish(k)=(b61-b62-pfishvssdf)*dt+qsdfish(k-1)
 c       qpfish(k)=(b71-b72)*dt+qpfish(k-1)
