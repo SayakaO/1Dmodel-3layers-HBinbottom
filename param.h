@@ -47,7 +47,8 @@ c
       common /windt/wxt(nrmax),wyt(nrmax),nw
       common /wind/wx,wy,wstx,wsty
       common /ini/dens0,tmp0,qs0,qsl0,phy0(npmax),zoo0(npmax),
-     &            bac0,poc0,doc0,dip0,dinh0,dis0,dox0,hb0,poly0,other0
+     &            bac0,poc0,doc0,dip0,dinh0,dis0,dox0,hb0,poly0,
+     &            other0,spfish0,sdfish0
       common /rts/nta,nba,
      &            tat(nrmax),tempa(nrmax),
      &            pres(nrmax),sunn(nrmax),cld(nrmax),
@@ -72,6 +73,10 @@ c
       common /hb/hb(0:nzmax+1),hbn(0:nzmax+1),qhb(nzmax)
       common /poly/poly(0:nzmax+1),polyn(0:nzmax+1),qpoly(nzmax)
       common /other/other(0:nzmax+1),othern(0:nzmax+1),qother(nzmax)
+      common /spfish/spfish(0:nzmax+1),spfishn(0:nzmax+1),
+     &               qspfish(nzmax)
+      common /sdfish/sdfish(0:nzmax+1),sdfishn(0:nzmax+1),
+     &               qsdfish(nzmax)
       common /outv/nv,iv(20),jv(20)
       common /outz/nzt,iz(20),jz(20)
       common /outd/nd,id(20),jd(20)

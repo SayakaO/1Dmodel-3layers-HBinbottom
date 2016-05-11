@@ -136,6 +136,28 @@ c
 c        econ(k)=eco(k)
 c
    10 continue
+      return
+      end
 c
+c-----------------------------------------------------------------------
+c     -- dynamics for fishess--
+c                                               Author: Ayaka SAKAMOTO
+c                                               Update: 2016.4.19
+c-----------------------------------------------------------------------
+      subroutine adcalp(ww,eco,econ,qeco,fkhq)
+      implicit double precision (a-h,o-z)
+      include 'param.h'
+c
+      dimension eco(0:nzmax+1)
+      dimension econ(0:nzmax+1)
+      dimension qeco(nzmax)
+      dimension fkhq(0:nzmax)
+c
+      do 10 k=nz,1,-1
+c
+       econ(k)=eco(k)+tbal*dt*qeco(k)
+c        econ(k)=eco(k)
+c
+   10 continue
       return
       end

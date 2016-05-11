@@ -60,6 +60,10 @@ c
        polyn(k)=0.d0
        other(k)=other0
        othern(k)=0.d0
+       spfish(k)=spfish0
+       spfishn(k)=0.d0
+       sdfish(k)=sdfish0
+       sdfishn(k)=0.d0
    60 continue
 c
       wx=wx0
