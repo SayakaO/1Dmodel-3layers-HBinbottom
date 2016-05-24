@@ -144,7 +144,7 @@ c
       other0=20.d0
       spfish0=10.d0
       sdfish0=10.d0
-c      pfish(1)=10000.d0
+      pfish0=10.d0
 c
 c     -- parameter values for phytoplankton --
 c

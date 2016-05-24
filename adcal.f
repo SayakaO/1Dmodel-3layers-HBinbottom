@@ -83,6 +83,7 @@ c
 	 else
         advez=ww*(eco(m,k)-eco(m,k-1))/ddz(k)
 	 endif
+        write (*,*)  advez
 c
 c	-- diffusion term --
 c

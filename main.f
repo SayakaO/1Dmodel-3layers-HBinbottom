@@ -78,6 +78,10 @@ c
      &          status='unknown') 
         open(72,file='output/tpfish.dat',form='formatted',
      &          status='unknown') 
+        open(73,file='output/tqpoc(pos).dat',form='formatted',
+     &          status='unknown') 
+        open(74,file='output/tqpoc(neg).dat',form='formatted',
+     &          status='unknown') 
        endif
       endif
 c

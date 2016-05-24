@@ -64,6 +64,8 @@ c
        spfishn(k)=0.d0
        sdfish(k)=sdfish0
        sdfishn(k)=0.d0
+       pfish(k)=pfish0
+       pfishn(k)=0.d0
    60 continue
 c
       wx=wx0
